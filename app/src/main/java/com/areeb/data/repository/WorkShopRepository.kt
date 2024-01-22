@@ -8,17 +8,28 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class WorkShopRepository @Inject constructor(private val appDataBase: AppDataBase)
-{
+class WorkShopRepository @Inject constructor(private val appDataBase: AppDataBase) {
     companion object {
         private const val TAG = "workshopRepo"
     }
 
     fun getAllWorkshops(): kotlinx.coroutines.flow.Flow<List<WorkShopEntity>> {
         return flow {
-            val data = appDataBase.workshopDao().getAllWorkshop()
-            Log.e(TAG, data.toString())
-            emit(data)
+            try {
+                val data = appDataBase.workshopDao().getAllWorkshop()
+                emit(data)
+            } catch (e: Exception) {
+                Log.e(TAG, e.message.toString())
+            }
+
         }.flowOn(Dispatchers.IO)
     }
+
+    suspend fun addWorkShopList(workShopList: List<WorkShopEntity>) {
+
+        appDataBase.workshopDao().insertWorkShopList(workShopList)
+
+    }
+
+
 }

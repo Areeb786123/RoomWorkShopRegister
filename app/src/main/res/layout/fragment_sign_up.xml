@@ -1,0 +1,132 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context="com.areeb.ui.auth.SignUpFragment">
+
+    <RelativeLayout
+        android:id="@+id/profileAvatar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_10"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+
+            android:layout_width="@dimen/size_100"
+            android:layout_height="@dimen/size_100"
+            android:src="@drawable/ic_profile_avatar" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tvFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/font_10"
+        android:layout_marginTop="@dimen/size_100"
+        android:text="@string/firstname"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileAvatar" />
+
+    <EditText
+        android:id="@+id/edFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/font_16"
+        android:layout_marginTop="@dimen/size_10"
+        android:hint="@string/please_write_your_first_name"
+        android:textColor="@color/white"
+        android:textColorHint="@color/darkish_white"
+        android:textSize="@dimen/font_14"
+        app:layout_constraintTop_toBottomOf="@+id/tvFirstName" />
+
+    <TextView
+        android:id="@+id/tvLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/font_10"
+        android:layout_marginTop="@dimen/size_10"
+        android:text="@string/last_name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edFirstName" />
+
+    <EditText
+        android:id="@+id/edLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/font_16"
+        android:layout_marginTop="@dimen/size_10"
+        android:hint="@string/please_write_your_last_name"
+        android:textColor="@color/white"
+        android:textColorHint="@color/darkish_white"
+        android:textSize="@dimen/font_14"
+        app:layout_constraintTop_toBottomOf="@+id/tvLastName" />
+
+    <TextView
+        android:id="@+id/tvAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/font_10"
+        android:layout_marginTop="@dimen/size_10"
+        android:text="@string/age"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edLastName" />
+
+    <EditText
+        android:id="@+id/edAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/font_16"
+        android:layout_marginTop="@dimen/size_10"
+        android:hint="@string/please_write_your_last_name"
+        android:inputType="number"
+        android:textColor="@color/white"
+        android:textColorHint="@color/darkish_white"
+        android:textSize="@dimen/font_14"
+        app:layout_constraintTop_toBottomOf="@+id/tvAge" />
+
+
+    <TextView
+        android:id="@+id/tvValidation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/font_10"
+        android:layout_marginTop="@dimen/size_10"
+        android:layout_marginEnd="@dimen/size_10"
+        android:textAlignment="textEnd"
+        android:textColor="@color/red"
+        android:textSize="@dimen/font_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edAge"
+        tools:text="error will occur here " />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_80"
+        android:backgroundTint="@color/blue"
+        android:text="@string/signup"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

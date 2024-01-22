@@ -11,4 +11,8 @@ interface WorkShopDao {
     @Query("SELECT * FROM workshop_entity")
     suspend fun getAllWorkshop(): List<WorkShopEntity>
 
+
+    @Insert
+    suspend fun insertWorkShopList(workshopList: List<WorkShopEntity>)
+
 }
