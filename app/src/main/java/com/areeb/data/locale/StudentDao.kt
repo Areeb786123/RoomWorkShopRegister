@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.areeb.data.models.UserEntitiy
+import com.areeb.data.models.WorkShopEntity
 
 
 @Dao
@@ -24,4 +25,8 @@ interface StudentDao {
     * */
     @Query("SELECT * FROM user_entity")
     suspend fun getUser(): UserEntitiy
+
+
+    @Insert
+    suspend fun workShopAppliedFor(userEntitiy: UserEntitiy)
 }

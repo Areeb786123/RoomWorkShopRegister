@@ -11,4 +11,5 @@ data class UserEntitiy(
     val firstName: String,
     val lastName: String,
     val age: Int,
+//    val workShopAppliedFor: List<WorkShopEntity>? = null
 )
