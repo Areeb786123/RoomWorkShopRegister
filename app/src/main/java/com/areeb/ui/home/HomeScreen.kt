@@ -18,6 +18,8 @@ class HomeScreen : Fragment() {
         return inflater.inflate(R.layout.fragment_home_screen, container, false)
     }
 
+
     companion object {
+        private const val TAG = "homeFragment"
     }
 }
