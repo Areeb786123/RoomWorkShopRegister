@@ -13,4 +13,5 @@
     <string name="your_s_applied_workshops">Your\'s applied workshops</string>
     <string name="you_have_not_register_for_any_workshop_yet">you have not register for any workshop yet</string>
     <string name="email">Email</string>
+    <string name="no_data_found">No data found please refresh</string>
 </resources>

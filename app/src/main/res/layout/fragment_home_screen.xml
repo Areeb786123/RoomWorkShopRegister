@@ -6,6 +6,34 @@
     android:background="@color/black"
     tools:context="com.areeb.ui.home.HomeScreen">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animSwipeDown"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_120"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/swipe_anim" />
+
+    <RelativeLayout
+        android:id="@+id/noDataFound"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_data_found"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_16" />
+    </RelativeLayout>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
@@ -16,12 +44,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/workShopRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/home_item" />
+            tools:listitem="@layout/home_item"
+            tools:visibility="gone" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 

@@ -84,7 +84,15 @@ class HomeScreen : BaseFragment() {
     }
 
     private fun handleUi() {
-
+        if (workShopList.isEmpty()) {
+            binding.workShopRecyclerView.visibility = View.GONE
+            binding.animSwipeDown.visibility = View.VISIBLE
+            binding.noDataFound.visibility = View.VISIBLE
+        } else {
+            binding.workShopRecyclerView.visibility = View.VISIBLE
+            binding.animSwipeDown.visibility = View.GONE
+            binding.noDataFound.visibility = View.GONE
+        }
         adapter = HomeAdapter(workShopList)
 
 

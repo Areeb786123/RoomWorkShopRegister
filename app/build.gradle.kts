@@ -51,6 +51,7 @@ dependencies {
     val hilt_version = "2.44"
     val room_version = "2.5.2"
     val swipe = "1.2.0-alpha01"
+    val lottieVersion = "6.3.0"
 
     implementation("androidx.core:core-ktx:1.8.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -107,6 +108,9 @@ dependencies {
 
     //Gson
     implementation ("com.google.code.gson:gson:2.8.9")
+
+    //lottie
+    implementation ("com.airbnb.android:lottie:$lottieVersion")
 
 
 
