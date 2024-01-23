@@ -1,32 +1,23 @@
 package com.areeb.ui.home
 
-import android.graphics.ColorSpace.Adaptation
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.areeb.MainActivity
 import com.areeb.data.models.UserEntitiy
 import com.areeb.data.models.WorkShopEntity
 import com.areeb.ui.auth.AuthViewModel
 import com.areeb.ui.base.BaseFragment
+import com.areeb.ui.common.clickListener.ClickListener
 import com.areeb.ui.home.adapter.HomeAdapter
 import com.areeb.ui.home.viewModels.HomeViewModels
-
-import com.areeb.workshopregister.R
 import com.areeb.workshopregister.databinding.FragmentHomeScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeScreen : BaseFragment() {
@@ -93,7 +84,7 @@ class HomeScreen : BaseFragment() {
             binding.animSwipeDown.visibility = View.GONE
             binding.noDataFound.visibility = View.GONE
         }
-        adapter = HomeAdapter(workShopList)
+        adapter = HomeAdapter(workShopList, currentUser, onAdapter)
 
 
         binding.workShopRecyclerView.adapter = adapter
@@ -108,6 +99,13 @@ class HomeScreen : BaseFragment() {
 
 
         }
+    }
+
+    val onAdapter = object : ClickListener<WorkShopEntity> {
+        override fun onClick(t: WorkShopEntity) {
+            Toast.makeText(requireContext(), t.workshopName, Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     companion object {
