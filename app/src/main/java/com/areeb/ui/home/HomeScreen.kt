@@ -7,11 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.areeb.MainActivity
+import com.areeb.data.models.UserEntitiy
 import com.areeb.data.models.WorkShopEntity
+import com.areeb.ui.auth.AuthViewModel
 import com.areeb.ui.base.BaseFragment
 import com.areeb.ui.home.adapter.HomeAdapter
 import com.areeb.ui.home.viewModels.HomeViewModels
@@ -32,8 +35,10 @@ class HomeScreen : BaseFragment() {
     private var _binding: FragmentHomeScreenBinding? = null
     private val binding get() = _binding!!
     private val viewModels by viewModels<HomeViewModels>()
+    private val authViewModels by viewModels<AuthViewModel>()
     private lateinit var adapter: HomeAdapter
     private var workShopList: List<WorkShopEntity> = emptyList()
+    private lateinit var currentUser: UserEntitiy
 
 
     override fun onCreateView(
@@ -48,15 +53,19 @@ class HomeScreen : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setViews()
         observer()
+        setViews()
 
 
     }
 
     private fun observer() {
+        authViewModels.currentUser.observe(viewLifecycleOwner) {
+            Log.e("currUser", it.toString())
+            currentUser = it
+            mainActivity.activityBinding.userName.text = "hello ${currentUser.firstName} 👋🏻"
+        }
         viewModels.workShopList.observe(viewLifecycleOwner) {
-            Log.e("testData", it.toString())
             if (it.isNotEmpty()) {
                 binding.swipeRefresh.isRefreshing = false
             }
@@ -69,8 +78,8 @@ class HomeScreen : BaseFragment() {
 
     private fun setViews() {
         mainActivity.activityBinding.let {
-            it.toolBar.setTitle("hello User 👋🏻")
             it.bottomNavigation.visibility = View.VISIBLE
+            it.profileImage.visibility = View.VISIBLE
         }
     }
 
@@ -99,7 +108,8 @@ class HomeScreen : BaseFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        mainActivity.activityBinding.toolBar.title = ""
+        mainActivity.activityBinding.userName.text = ""
+        mainActivity.activityBinding.profileImage.visibility = View.GONE
 
     }
 

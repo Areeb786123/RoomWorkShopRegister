@@ -57,9 +57,11 @@ e
 5app/src/main/java/com/areeb/ui/auth/SignUpFragment.kt,4/d/4da34a4c2ee9fc99f240e3a2cb084eec5395b71a
 d
 4app/src/main/java/com/areeb/ui/auth/AuthViewModel.kt,0/b/0b2675ed0c16e00b80a18e774677f641c4e49929
-l
-<app/src/main/java/com/areeb/data/repository/UserRepsitory.kt,f/6/f6610288f0ea05dced0e2928dc06e836571b6f4a
 m
 =app/src/main/java/com/areeb/data/repository/UserRepository.kt,2/7/27f5f070fd4c2fbaec0f273b4f8f0bc228fb75a4
 g
 7app/src/main/java/com/areeb/ui/splash/SplashFragment.kt,2/e/2e8d39e88af818c59eabe699a467ff893c0c8781
+o
+?app/src/main/java/com/areeb/data/typeConverts/TypeConverters.kt,4/6/460cc8d88bf2100bf982fa4326e414ebdd8aaa9a
+k
+;app/src/main/java/com/areeb/data/typeConverts/Converters.kt,5/d/5d7d2a424c36597f6fd59c6a098395adcd50d791

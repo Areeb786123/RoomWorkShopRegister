@@ -43,6 +43,7 @@ android {
 
 dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation("com.google.firebase:firebase-crashlytics-buildtools:2.9.9")
     //versions
     val lifecycle_version = "2.7.0"
     val glide = "4.16.0"
@@ -103,6 +104,9 @@ dependencies {
 
     // optional - Paging 3 Integration
     implementation("androidx.room:room-paging:$room_version")
+
+    //Gson
+    implementation ("com.google.code.gson:gson:2.8.9")
 
 
 
