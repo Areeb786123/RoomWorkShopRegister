@@ -85,6 +85,7 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvApplied"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
         android:layout_marginHorizontal="@dimen/font_20"

@@ -28,7 +28,6 @@ class AuthViewModel @Inject constructor(private val userRepository: UserReposito
     }
 
     fun getUser() {
-        Log.e("chchc", " get user was called ")
         viewModelScope.launch {
             _currentUser.value = userRepository.getUser()
         }

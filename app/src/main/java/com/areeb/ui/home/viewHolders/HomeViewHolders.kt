@@ -7,10 +7,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.areeb.data.models.UserEntitiy
 import com.areeb.data.models.WorkShopEntity
+import com.areeb.ui.common.clickListener.ClickListener
 import com.areeb.workshopregister.R
 import com.areeb.workshopregister.databinding.HomeItemBinding
 import com.bumptech.glide.Glide
@@ -22,12 +24,19 @@ import com.bumptech.glide.request.target.Target
 
 
 class HomeViewHolders(private val binding: HomeItemBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+    RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+    init {
+        binding.applyButton.setOnClickListener(this)
+    }
 
     private lateinit var workShopEntity: WorkShopEntity
+    private lateinit var userEntitiy: UserEntitiy
+    private lateinit var listener: ClickListener<WorkShopEntity>
 
-    fun bind(workShopEntity: WorkShopEntity, userEntitiy: UserEntitiy? = null) {
+    fun bind(workShopEntity: WorkShopEntity, userEntitiy: UserEntitiy, listener: ClickListener<WorkShopEntity>) {
         this.workShopEntity = workShopEntity
+        this.userEntitiy = userEntitiy
+        this.listener = listener
 
         settingUpTheUi()
 
@@ -39,30 +48,38 @@ class HomeViewHolders(private val binding: HomeItemBinding) :
             workShopTitle.text = workShopEntity.workshopName
             workShopDuration.text = workShopEntity.duration
 
+            var isWorkshopApplied = false
 
-//            userEntitiy.workShopAppliedFor?.forEach {
-//                if (it.id == workShopEntity.id) {
-//                    applyButton.setBackgroundColor(
-//                        ContextCompat.getColor(
-//                            binding.root.context,
-//                            R.color.green
-//                        )
-//                    )
-//
-//                    applyButton.isClickable = false
-//                    applyButton.text = "Applied"
-//
-//                } else {
-//                    applyButton.setBackgroundColor(
-//                        ContextCompat.getColor(
-//                            binding.root.context,
-//                            R.color.blue
-//                        )
-//                    )
-//                }
-//            }
+            userEntitiy.workShopAppliedFor?.forEach {
+                Log.e("userid", "check  use user ${it.id}")
+                Log.e("userid", "${workShopEntity.id}")
+                if (it.id == workShopEntity.id) {
+                    applyButton.setBackgroundColor(
+                        ContextCompat.getColor(
+                            binding.root.context,
+                            R.color.green
+                        )
+                    )
+
+                    applyButton.isClickable = false
+                    applyButton.text = "Applied"
+
+                    isWorkshopApplied = true
+                }
+            }
+
+            // Set the default background color to blue if the workshop is not applied
+            if (!isWorkshopApplied) {
+                applyButton.setBackgroundColor(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        R.color.blue
+                    )
+                )
+            }
         }
     }
+
 
     private fun addImage() {
         Glide.with(binding.root.context).load(workShopEntity.image)
@@ -106,4 +123,9 @@ class HomeViewHolders(private val binding: HomeItemBinding) :
         }
     }
 
+    override fun onClick(v: View?) {
+        if (v?.id == binding.applyButton.id) {
+            listener.onClick(workShopEntity)
+        }
+    }
 }
