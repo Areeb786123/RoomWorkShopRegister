@@ -48,10 +48,10 @@ class HomeViewHolders(private val binding: HomeItemBinding) :
             workShopTitle.text = workShopEntity.workshopName
             workShopDuration.text = workShopEntity.duration
 
-
+            var isWorkshopApplied = false
 
             userEntitiy.workShopAppliedFor?.forEach {
-                Log.e("userid","check  use user ${it.id}")
+                Log.e("userid", "check  use user ${it.id}")
                 Log.e("userid", "${workShopEntity.id}")
                 if (it.id == workShopEntity.id) {
                     applyButton.setBackgroundColor(
@@ -64,17 +64,22 @@ class HomeViewHolders(private val binding: HomeItemBinding) :
                     applyButton.isClickable = false
                     applyButton.text = "Applied"
 
-                } else {
-                    applyButton.setBackgroundColor(
-                        ContextCompat.getColor(
-                            binding.root.context,
-                            R.color.blue
-                        )
-                    )
+                    isWorkshopApplied = true
                 }
+            }
+
+            // Set the default background color to blue if the workshop is not applied
+            if (!isWorkshopApplied) {
+                applyButton.setBackgroundColor(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        R.color.blue
+                    )
+                )
             }
         }
     }
+
 
     private fun addImage() {
         Glide.with(binding.root.context).load(workShopEntity.image)

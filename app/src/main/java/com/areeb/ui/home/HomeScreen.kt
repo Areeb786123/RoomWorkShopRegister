@@ -94,14 +94,11 @@ class HomeScreen : BaseFragment() {
     private val onAdapterClick = object : ClickListener<WorkShopEntity> {
         @SuppressLint("NotifyDataSetChanged")
         override fun onClick(t: WorkShopEntity) {
-            val model = UserEntitiy(
-                id = currentUser.id,
-                firstName = currentUser.firstName,
-                lastName = currentUser.lastName,
-                age = currentUser.age.toString().toInt(),
-                email = currentUser.email,
-                workShopAppliedFor = listOf(t)
+
+            val model = currentUser.copy(
+                workShopAppliedFor = (currentUser.workShopAppliedFor.orEmpty() + t).distinct()
             )
+
             authViewModels.updateUser(model)
 
             updateUi()
