@@ -1,5 +1,6 @@
 package com.areeb.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -30,8 +31,6 @@ class HomeScreen : BaseFragment() {
     private lateinit var adapter: HomeAdapter
     private var workShopList: List<WorkShopEntity> = emptyList()
     private lateinit var currentUser: UserEntitiy
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,18 +40,15 @@ class HomeScreen : BaseFragment() {
         return _binding!!.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observer()
         setViews()
-
-
     }
 
+    @SuppressLint("SetTextI18n")
     private fun observer() {
         authViewModels.currentUser.observe(viewLifecycleOwner) {
-            Log.e("currUser", it.toString())
             currentUser = it
             mainActivity.activityBinding.userName.text = "hello ${currentUser.firstName} 👋🏻"
         }
@@ -62,9 +58,7 @@ class HomeScreen : BaseFragment() {
             }
             workShopList = it
             handleUi()
-
         }
-
     }
 
     private fun setViews() {
@@ -84,9 +78,7 @@ class HomeScreen : BaseFragment() {
             binding.animSwipeDown.visibility = View.GONE
             binding.noDataFound.visibility = View.GONE
         }
-        adapter = HomeAdapter(workShopList, currentUser, onAdapter)
-
-
+        adapter = HomeAdapter(workShopList, currentUser, onAdapterClick)
         binding.workShopRecyclerView.adapter = adapter
         binding.swipeRefresh.setOnRefreshListener {
             Toast.makeText(requireContext(), "refreshing....", Toast.LENGTH_SHORT).show()
@@ -96,27 +88,41 @@ class HomeScreen : BaseFragment() {
                 }
                 viewModels.getAllWorkshops()
             }
-
-
         }
     }
 
-    val onAdapter = object : ClickListener<WorkShopEntity> {
+    private val onAdapterClick = object : ClickListener<WorkShopEntity> {
+        @SuppressLint("NotifyDataSetChanged")
         override fun onClick(t: WorkShopEntity) {
-            Toast.makeText(requireContext(), t.workshopName, Toast.LENGTH_SHORT).show()
-        }
+            val model = UserEntitiy(
+                id = currentUser.id,
+                firstName = currentUser.firstName,
+                lastName = currentUser.lastName,
+                age = currentUser.age.toString().toInt(),
+                email = currentUser.email,
+                workShopAppliedFor = listOf(t)
+            )
+            authViewModels.updateUser(model)
 
+            updateUi()
+        }
     }
 
     companion object {
         private const val TAG = "homeFragment"
     }
 
+    private fun updateUi() {
+        authViewModels.getUser()
+        viewModels.getAllWorkshops()
+        observer()
+
+        binding.workShopRecyclerView.adapter?.notifyDataSetChanged()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         mainActivity.activityBinding.userName.text = ""
         mainActivity.activityBinding.profileImage.visibility = View.GONE
-
     }
-
 }

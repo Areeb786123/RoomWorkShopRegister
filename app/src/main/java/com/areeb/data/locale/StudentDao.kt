@@ -27,6 +27,4 @@ interface StudentDao {
     suspend fun getUser(): UserEntitiy
 
 
-    @Insert
-    suspend fun workShopAppliedFor(userEntitiy: UserEntitiy)
 }

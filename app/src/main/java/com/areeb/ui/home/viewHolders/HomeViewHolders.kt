@@ -49,7 +49,10 @@ class HomeViewHolders(private val binding: HomeItemBinding) :
             workShopDuration.text = workShopEntity.duration
 
 
+
             userEntitiy.workShopAppliedFor?.forEach {
+                Log.e("userid","check  use user ${it.id}")
+                Log.e("userid", "${workShopEntity.id}")
                 if (it.id == workShopEntity.id) {
                     applyButton.setBackgroundColor(
                         ContextCompat.getColor(

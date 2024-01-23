@@ -61,8 +61,6 @@ m
 =app/src/main/java/com/areeb/data/repository/UserRepository.kt,2/7/27f5f070fd4c2fbaec0f273b4f8f0bc228fb75a4
 g
 7app/src/main/java/com/areeb/ui/splash/SplashFragment.kt,2/e/2e8d39e88af818c59eabe699a467ff893c0c8781
-o
-?app/src/main/java/com/areeb/data/typeConverts/TypeConverters.kt,4/6/460cc8d88bf2100bf982fa4326e414ebdd8aaa9a
 k
 ;app/src/main/java/com/areeb/data/typeConverts/Converters.kt,5/d/5d7d2a424c36597f6fd59c6a098395adcd50d791
 w
