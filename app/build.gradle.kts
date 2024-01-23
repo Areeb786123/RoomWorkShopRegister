@@ -43,6 +43,7 @@ android {
 
 dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation("com.google.firebase:firebase-crashlytics-buildtools:2.9.9")
     //versions
     val lifecycle_version = "2.7.0"
     val glide = "4.16.0"
@@ -50,6 +51,7 @@ dependencies {
     val hilt_version = "2.44"
     val room_version = "2.5.2"
     val swipe = "1.2.0-alpha01"
+    val lottieVersion = "6.3.0"
 
     implementation("androidx.core:core-ktx:1.8.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -103,6 +105,12 @@ dependencies {
 
     // optional - Paging 3 Integration
     implementation("androidx.room:room-paging:$room_version")
+
+    //Gson
+    implementation ("com.google.code.gson:gson:2.8.9")
+
+    //lottie
+    implementation ("com.airbnb.android:lottie:$lottieVersion")
 
 
 

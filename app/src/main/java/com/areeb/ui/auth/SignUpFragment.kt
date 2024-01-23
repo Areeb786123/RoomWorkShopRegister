@@ -31,6 +31,7 @@ class SignUpFragment : BaseFragment() {
     private var firstName = ""
     private var lastName = ""
     private var age = 0
+    private var email = ""
     private val viewModels by viewModels<AuthViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,9 +74,15 @@ class SignUpFragment : BaseFragment() {
                 firstName = edFirstName.text.toString()
                 lastName = edLastName.text.toString()
                 age = if (edAge.text.toString().isNotEmpty()) edAge.text.toString().toInt() else 0
+                email = edEmail.text.toString()
                 if (shouldUserNavigate()) {
                     val userModel =
-                        UserEntitiy(firstName = firstName, lastName = lastName, age = age)
+                        UserEntitiy(
+                            firstName = firstName,
+                            lastName = lastName,
+                            age = age,
+                            email = email
+                        )
                     viewModels.storeUser(userModel)
                     btnSignUp.isClickable = false
                     btnSignUp.setBackgroundColor(Color.GRAY)
@@ -97,6 +104,9 @@ class SignUpFragment : BaseFragment() {
 
         } else if (age == 0) {
             viewModels.setErrorMessage("age is empty")
+            return false
+        } else if (email.isEmpty()) {
+            viewModels.setErrorMessage("email is empty")
             return false
         } else {
             return true

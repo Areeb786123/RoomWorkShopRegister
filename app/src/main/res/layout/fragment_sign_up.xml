@@ -100,6 +100,32 @@
         android:textSize="@dimen/font_14"
         app:layout_constraintTop_toBottomOf="@+id/tvAge" />
 
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/font_10"
+        android:layout_marginTop="@dimen/size_10"
+        android:text="@string/email"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edAge" />
+
+    <EditText
+        android:id="@+id/edEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/font_16"
+        android:layout_marginTop="@dimen/size_10"
+        android:hint="@string/please_write_your_last_name"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="@color/darkish_white"
+        android:textSize="@dimen/font_14"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
 
     <TextView
         android:id="@+id/tvValidation"
@@ -113,7 +139,7 @@
         android:textSize="@dimen/font_12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edAge"
+        app:layout_constraintTop_toBottomOf="@+id/edEmail"
         tools:text="error will occur here " />
 
     <androidx.appcompat.widget.AppCompatButton
